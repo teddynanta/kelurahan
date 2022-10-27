@@ -35,107 +35,36 @@
     <div class="marketing">
         
     <div class="row mb-5">
-        <div class="col-md-2">
-            <div class="card">
-                <div class="card-body">
-                    <img class="rounded-circle mb-3" height="120px" style="aspect-ratio:1;">
-                    <h5 class="card-title text-center mb-0"> Fitur 1</h5>
-                </div>
+        @foreach ($features as $feature)
+            <div class="col-md-2">
+                <a class="text-decoration-none text" href="{{ $feature->link }}" target="__blank">
+                    <div class="card">
+                        <div class="card-body">
+                            <img src="/storage/{{ $feature->icon }}" class="d-block mb-3 mx-auto" height="100px" style="aspect-ratio:1;">
+                            <h5 class="card-title text-center text-secondary mb-0"> {{ $feature->name }}</h5>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <div class="card-body">
-                    <img class="rounded-circle mb-3" height="120px" style="aspect-ratio:1;">
-                    <h5 class="card-title text-center mb-0"> Fitur 1</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <div class="card-body">
-                    <img class="rounded-circle mb-3" height="120px" style="aspect-ratio:1;">
-                    <h5 class="card-title text-center mb-0"> Fitur 1</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <div class="card-body">
-                    <img class="rounded-circle mb-3" height="120px" style="aspect-ratio:1;">
-                    <h5 class="card-title text-center mb-0"> Fitur 1</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <div class="card-body">
-                    <img class="rounded-circle mb-3" height="120px" style="aspect-ratio:1;">
-                    <h5 class="card-title text-center mb-0"> Fitur 1</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <div class="card-body">
-                    <img class="rounded-circle mb-3" height="120px" style="aspect-ratio:1;">
-                    <h5 class="card-title text-center mb-0"> Fitur 1</h5>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 
     <div class="row mb-3 text-center">
         <div class="col-md-7 themed-grid-col">
             <div id="img-gallery" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                <button type="button" data-bs-target="#img-gallery" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#img-gallery" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#img-gallery" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+                    <img class="mask" src="/storage/{{ $posts[0]->image }}" alt="{{ $posts[0]->title }}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+                    {{-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg> --}}
             
                     <div class="container">
                     <div class="carousel-caption text-start">
-                        <h1>Example headline.</h1>
+                        <h1>{{ $posts[0]->title }}</h1>
                         <p>Some representative placeholder content for the first slide of the carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-                    </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-            
-                    <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Some representative placeholder content for the second slide of the carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-                    </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-            
-                    <div class="container">
-                    <div class="carousel-caption text-end">
-                        <h1>One more for good measure.</h1>
-                        <p>Some representative placeholder content for the third slide of this carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
                     </div>
                     </div>
                 </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#img-gallery" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#img-gallery" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-                </button>
             </div>            
         </div>
         <div class="col-md-5 themed-grid-col">
