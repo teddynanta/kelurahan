@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use Illuminate\Http\Request;
 use TCG\Voyager\Models\Post;
 
@@ -11,7 +12,8 @@ class HomeController extends Controller
     {
         return view('home', [
             'active' => 'Beranda',
-            'posts' => Post::latest()->get()
+            'posts' => Post::latest()->get(),
+            'banners' => Banner::orderBy('order', 'asc')->get()
         ]);
     }
 

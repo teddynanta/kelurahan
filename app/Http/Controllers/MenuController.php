@@ -19,4 +19,9 @@ class MenuController extends Controller
             'dropdowns' => $dropdowns
         ]);
     }
+
+    public function dump()
+    {
+        return view('menu');
+    }
 }

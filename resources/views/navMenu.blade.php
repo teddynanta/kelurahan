@@ -1,36 +1,56 @@
 <ul class="navbar-nav me-auto mb-2 mb-md-0">
-  @foreach ($menus as $menu)
-    @if ($menu->url == "" && $menu->parent_id === null)
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {{ $menu->title }}
-      </a>
-      <ul class="dropdown-menu">
-        @foreach ($dropdowns as $dropdown)  
-          <li><a class="dropdown-item" href="{{ $dropdown->url }}">{{ $dropdown->title }}</a></li>
-        @endforeach
-      </ul>
-    </li>
-    @if ($menu->url !== null && $menu->)
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="{{ $menu->url }}">{{ $menu->title }}</a>
-    </li>
-    @endif
+
+  @php
+  
+      if (Voyager::translatable($items)) {
+          $items = $items->load('translations');
+      }
+  
+  @endphp
+  
+  @foreach ($items as $item)
+  
+      @php
+  
+          $originalItem = $item;
+          if (Voyager::translatable($item)) {
+              $item = $item->translate($options->locale);
+          }
+  
+          $isActive = null;
+          $styles = null;
+          $icon = null;
+  
+          // Background Color or Color
+          if (isset($options->color) && $options->color == true) {
+              $styles = 'color:'.$item->color;
+          }
+          if (isset($options->background) && $options->background == true) {
+              $styles = 'background-color:'.$item->color;
+          }
+  
+          // Check if link is current
+          if(url($item->link()) == url()->current()){
+              $isActive = 'active';
+          }
+  
+          // Set Icon
+          if(isset($options->icon) && $options->icon == true){
+              $icon = '<i class="' . $item->icon_class . '"></i>';
+          }
+  
+      @endphp
+  
+      <li class="{{ $isActive }} nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="{{ url($item->link()) }}" target="{{ $item->target }}" style="{{ $styles }}">
+              {!! $icon !!}
+              <span>{{ $item->title }}</span>
+          </a>
+          @if(!$originalItem->children->isEmpty())
+              @include('voyager::menu.default', ['items' => $originalItem->children, 'options' => $options])
+          @endif
+      </li>
   @endforeach
-</ul>
-{{-- @if ($menu->url == "" && $menu->parent_id === null)
-<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    {{ $menu->title }}
-  </a>
-  <ul class="dropdown-menu">
-    @foreach ($dropdowns as $dropdown)  
-      <li><a class="dropdown-item" href="{{ $dropdown->url }}">{{ $dropdown->title }}</a></li>
-    @endforeach
+  
   </ul>
-</li>
-@else
-<li class="nav-item">
-  <a class="nav-link active" aria-current="page" href="{{ $menu->url }}">{{ $menu->title }}</a>
-</li>
-@endif --}}
+  
