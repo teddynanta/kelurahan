@@ -21,7 +21,9 @@ $uris = Page::select('slug')->get();
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/dump', function () {
-    return view('navMenu');
+    return view('navMenu', [
+        'data' => menu('menu', '_json')
+    ]);
 });
 
 Route::get('/admin/banner', [HomeController::class, 'banner']);

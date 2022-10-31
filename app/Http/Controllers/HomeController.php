@@ -17,7 +17,8 @@ class HomeController extends Controller
             'posts' => Post::latest()->limit(3)->get(),
             'banners' => Banner::orderBy('order', 'asc')->get(),
             'features' => Feature::get(),
-            'featured' => Post::where('featured', 1)->latest()->get()
+            'featured' => Post::where('featured', 1)->latest()->get(),
+            'menu' => menu('menu', '_json')
         ]);
     }
 
@@ -29,7 +30,8 @@ class HomeController extends Controller
     public function profile(Request $request)
     {
         return view('pages.index', [
-            'data' => Page::where('slug', ltrim($request->getRequestUri(), '/'))->first()
+            'data' => Page::where('slug', ltrim($request->getRequestUri(), '/'))->first(),
+            'menu' => menu('menu', '_json')
         ]);
     }
 }
