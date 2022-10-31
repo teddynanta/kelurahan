@@ -13,9 +13,10 @@ class HomeController extends Controller
     {
         return view('home', [
             'active' => 'Beranda',
-            'posts' => Post::latest()->get(),
+            'posts' => Post::latest()->limit(3)->get(),
             'banners' => Banner::orderBy('order', 'asc')->get(),
-            'features' => Feature::get()
+            'features' => Feature::get(),
+            'featured' => Post::where('featured', 1)->latest()->get()
         ]);
     }
 

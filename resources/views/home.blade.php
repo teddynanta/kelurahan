@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('component')
-    
 
 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <marquee class="mt-2" behavior="#" direction="">{{ setting('site.description') }}</marquee>
@@ -34,7 +33,7 @@
     
     <div class="marketing">
         
-    <div class="row mb-5">
+    <div class="row mb-5 mx-auto">
         @foreach ($features as $feature)
             <div class="col-md-2">
                 <a class="text-decoration-none text" href="{{ $feature->link }}" target="__blank">
@@ -50,32 +49,40 @@
     </div>
 
     <div class="row mb-3 text-center">
-        <div class="col-md-7 themed-grid-col">
-            <div id="img-gallery" class="carousel slide" data-bs-ride="carousel">
+        <div class="col-md-6 themed-grid-col">
+            <div id="img-gallery" class="carousel slide mt-4" data-bs-ride="carousel">
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="mask" src="/storage/{{ $posts[0]->image }}" alt="{{ $posts[0]->title }}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
-                    {{-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg> --}}
-            
+                    <img class="mask" src="/storage/{{ $featured[0]->image }}" alt="{{ $featured[0]->title }}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
                     <div class="container">
                     <div class="carousel-caption text-start">
-                        <h1>{{ $posts[0]->title }}</h1>
-                        <p>Some representative placeholder content for the first slide of the carousel.</p>
+                        <h1>{{ $featured[0]->title }}</h1>
+                        <p>{{ $featured[0]->excerpt }}</p>
                     </div>
                     </div>
                 </div>
                 </div>
             </div>            
         </div>
-        <div class="col-md-5 themed-grid-col">
+        <div class="col-md-6 themed-grid-col">
             <div class="row">
+                <div class="col-md-3 mb-2 ms-auto me-3">
+                    <a href="/" class="badge rounded-pill bg-dark text-end text-decoration-none px-3 py-2">Lihat Semua Berita</a>
+                </div>
                 @foreach ($posts as $post)
                 
-                <div class="col-md-12 mb-3">
+                <div class="col-md-12 mb-3 text-start">
                     <div class="card">
-                        <div class="card-body d-flex flex-row">
-                            <img class="img-thumbnail" src="/storage/{{ $post->image }}" width="20%">
-                            <h5 class="card-title">&nbsp;&nbsp;{{ $post->title }}</h5>
+                        <div class="card-body d-flex flex-row mt-3">
+                            @if (!$post->image)
+                                <img src="https://via.placeholder.com/150.png?text=Tidak+Ada+Gambar" width="20%" alt="Tidak Ada Gambar"> 
+                            @else
+                                <img src="/storage/{{ $post->image }}" width="20%">
+                            @endif
+                            <div class="row ms-2">
+                                <h5 class="card-title fs-4">{{ $post->title }} <span class="position-absolute top-0 end-0 badge text-bg-secondary fs-6 fw-normal">{{ $post->category->name }}</span></h5>
+                                <p>{{ $post->excerpt }} <a href="">baca selengkapnya</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
