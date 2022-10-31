@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Feature;
 use Illuminate\Http\Request;
+use TCG\Voyager\Models\Page;
 use TCG\Voyager\Models\Post;
 
 class HomeController extends Controller
@@ -23,5 +24,12 @@ class HomeController extends Controller
     public function banner()
     {
         return view('banner');
+    }
+
+    public function profile(Request $request)
+    {
+        return view('pages.index', [
+            'data' => Page::where('slug', ltrim($request->getRequestUri(), '/'))->first()
+        ]);
     }
 }

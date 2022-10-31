@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
+use TCG\Voyager\Models\Page;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+$uris = Page::select('slug')->get();
+
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/dump', [MenuController::class, 'getMenu']);
+Route::get('/dump', function () {
+    return view('navMenu');
+});
 
 Route::get('/admin/banner', [HomeController::class, 'banner']);
 
+Route::get('/profil-kelurahan', [HomeController::class, 'profile']);
+
+foreach ($uris as $uri) {
+    Route::get('/' . $uri->slug, [HomeController::class, 'profile']);
+}
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

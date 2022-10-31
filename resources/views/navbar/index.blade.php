@@ -14,10 +14,10 @@
             Profil
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="/profil-kelurahan">Profil Kelurahan</a></li>
+            <li><a class="dropdown-item" href="/profil-lurah">Profil Lurah</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="/laskdjfalksfjdl">Something else here</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">

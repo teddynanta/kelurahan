@@ -1,56 +1,72 @@
-<ul class="navbar-nav me-auto mb-2 mb-md-0">
 
-  @php
-  
-      if (Voyager::translatable($items)) {
-          $items = $items->load('translations');
-      }
-  
-  @endphp
-  
-  @foreach ($items as $item)
-  
-      @php
-  
-          $originalItem = $item;
-          if (Voyager::translatable($item)) {
-              $item = $item->translate($options->locale);
-          }
-  
-          $isActive = null;
-          $styles = null;
-          $icon = null;
-  
-          // Background Color or Color
-          if (isset($options->color) && $options->color == true) {
-              $styles = 'color:'.$item->color;
-          }
-          if (isset($options->background) && $options->background == true) {
-              $styles = 'background-color:'.$item->color;
-          }
-  
-          // Check if link is current
-          if(url($item->link()) == url()->current()){
-              $isActive = 'active';
-          }
-  
-          // Set Icon
-          if(isset($options->icon) && $options->icon == true){
-              $icon = '<i class="' . $item->icon_class . '"></i>';
-          }
-  
-      @endphp
-  
-      <li class="{{ $isActive }} nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="{{ url($item->link()) }}" target="{{ $item->target }}" style="{{ $styles }}">
-              {!! $icon !!}
-              <span>{{ $item->title }}</span>
-          </a>
-          @if(!$originalItem->children->isEmpty())
-              @include('voyager::menu.default', ['items' => $originalItem->children, 'options' => $options])
-          @endif
-      </li>
-  @endforeach
-  
-  </ul>
-  
+    {{ $data = menu('menu', '_json') }}
+
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="/">{{ setting('site.title') }}</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Beranda</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Profil
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/profil-kelurahan">Profil Kelurahan</a></li>
+                  <li><a class="dropdown-item" href="/profil-lurah">Profil Lurah</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/laskdjfalksfjdl">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Informasi
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Pemerintahan
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Layanan
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin">Desa Cantik</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/login">Login</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
