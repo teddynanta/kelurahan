@@ -9,25 +9,27 @@
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav nav-pills me-auto mb-2 mb-md-0">
+        <div class="collapse navbar-collapse ms-auto" id="navbarCollapse">
+            <ul class="navbar-nav nav-pills ms-auto mb-2 mb-md-0">
                 @foreach ($menu as $item)
                     @if ($item->children->isEmpty())
                         <li class="nav-item">
-                            <a class="nav-link {{ $active === $item->title ? 'active' : '' }}" aria-current="page"
-                                href="{{ $item->url }}">{{ $item->title }}</a>
+                            <a class="nav-link {{ $active->title === $item->title ? 'active' : '' }}"
+                                aria-current="page" href="{{ $item->url }}">{{ $item->title }}</a>
                         </li>
                     @else
                         <li class="nav-item dropdown">
-                            <a class="nav-link {{ $active->title === $item->children->title ? 'active' : '' }} dropdown-toggle"
+                            <a class="nav-link {{ $active->title === $item->title ? 'active' : '' }} dropdown-toggle"
                                 href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ $item->title }}
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu w-25">
                                 @foreach ($item->children as $child)
                                     <li>
-                                        <a class="dropdown-item" href="{{ $child->url }}">{{ $child->title }}</a>
+                                        <a class="dropdown-item text-wrap"
+                                            href="{{ $child->url }}">{{ $child->title }}</a>
                                     </li>
+                                    <hr class="w-75 mx-auto">
                                 @endforeach
                             </ul>
                         </li>
