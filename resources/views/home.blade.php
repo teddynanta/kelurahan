@@ -1,100 +1,107 @@
 @extends('layouts.main')
 
 @section('component')
-
-<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-    <marquee class="mt-2" behavior="#" direction="">{{ setting('site.description') }}</marquee>
-    <div class="carousel-indicators">
-    @foreach ($banners as $banner)
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="true" aria-label="Slide {{ $loop->iteration }}"></button>
-    @endforeach
-    </div>
-    <div class="carousel-inner">
-    @foreach ($banners as $banner)    
-        <div class="carousel-item {{ $loop->first ? 'active' : '' }}" aria-hidden="true">
-            <img class="d-block mx-auto" width="100%" height="100%" src="/storage/{{ $banner->image }}" alt="">
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <marquee class="mt-2" behavior="#" direction="">{{ setting('site.description') }}</marquee>
+        <div class="carousel-indicators">
+            @foreach ($banners as $banner)
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ $loop->index }}"
+                    class="{{ $loop->first ? 'active' : '' }}" aria-current="true"
+                    aria-label="Slide {{ $loop->iteration }}"></button>
+            @endforeach
         </div>
-    @endforeach
+        <div class="carousel-inner">
+            @foreach ($banners as $banner)
+                <div class="carousel-item {{ $loop->first ? 'active' : '' }}" aria-hidden="true">
+                    <img class="d-block mx-auto" width="100%" height="100%" src="/storage/{{ $banner->image }}"
+                        alt="">
+                </div>
+            @endforeach
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-    </button>
-</div>
 
 
-<!-- Marketing messaging and featurettes
-    ================================================== -->
+    <!-- Marketing messaging and featurettes
+        ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
-    
-    <div class="marketing">
-        
-    <div class="row mb-5 mx-auto">
-        @foreach ($features as $feature)
-            <div class="col-md-2">
-                <a class="text-decoration-none text" href="{{ $feature->link }}" target="__blank">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="/storage/{{ $feature->icon }}" class="d-block mb-3 mx-auto" height="100px" style="aspect-ratio:1;">
-                            <h5 class="card-title text-center text-secondary mb-0"> {{ $feature->name }}</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        @endforeach
-    </div>
 
-    <div class="row mb-3 text-center">
-        <div class="col-md-6 themed-grid-col">
-            <div id="img-gallery" class="carousel slide mt-4" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="mask" src="/storage/{{ $featured[0]->image }}" alt="{{ $featured[0]->title }}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
-                    <div class="container">
-                    <div class="carousel-caption text-start">
-                        <h1>{{ $featured[0]->title }}</h1>
-                        <p>{{ $featured[0]->excerpt }}</p>
-                    </div>
-                    </div>
+    <div class="marketing">
+
+        <div class="row mb-5 mx-auto">
+            @foreach ($features as $feature)
+                <div class="col-md-2">
+                    <a class="text-decoration-none text" href="{{ $feature->link }}" target="__blank">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="/storage/{{ $feature->icon }}" class="d-block mb-3 mx-auto" height="100px"
+                                    style="aspect-ratio:1;">
+                                <h5 class="card-title text-center text-secondary mb-0"> {{ $feature->name }}</h5>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                </div>
-            </div>            
+            @endforeach
         </div>
-        <div class="col-md-6 themed-grid-col">
-            <div class="row">
-                <div class="col-md-3 mb-2 ms-auto me-3">
-                    <a href="/" class="badge rounded-pill bg-dark text-end text-decoration-none px-3 py-2">Lihat Semua Berita</a>
-                </div>
-                @foreach ($posts as $post)
-                
-                <div class="col-md-12 mb-3 text-start">
-                    <div class="card">
-                        <div class="card-body d-flex flex-row mt-3">
-                            @if (!$post->image)
-                                <img src="https://via.placeholder.com/150.png?text=Tidak+Ada+Gambar" width="20%" alt="Tidak Ada Gambar"> 
-                            @else
-                                <img src="/storage/{{ $post->image }}" width="20%">
-                            @endif
-                            <div class="row ms-2">
-                                <h5 class="card-title fs-4">{{ $post->title }} <span class="position-absolute top-0 end-0 badge text-bg-secondary fs-6 fw-normal">{{ $post->category->name }}</span></h5>
-                                <p>{{ $post->excerpt }} <a href="">baca selengkapnya</a></p>
+
+        <div class="row mb-3 text-center">
+            <div class="col-md-6 themed-grid-col">
+                <div id="img-gallery" class="carousel slide mt-4" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="mask" src="/storage/{{ $featured[0]->image }}" alt="{{ $featured[0]->title }}"
+                                width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+                            <div class="container">
+                                <div class="carousel-caption text-start">
+                                    <h1>{{ $featured[0]->title }}</h1>
+                                    <p>{{ $featured[0]->excerpt }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
+            </div>
+            <div class="col-md-6 themed-grid-col">
+                <div class="row">
+                    <div class="col-md-3 mb-2 ms-auto me-3">
+                        <a href="/" class="badge rounded-pill bg-dark text-end text-decoration-none px-3 py-2">Lihat
+                            Semua Berita</a>
+                    </div>
+                    @foreach ($posts as $post)
+                        <div class="col-md-12 mb-3 text-start">
+                            <div class="card">
+                                <div class="card-body d-flex flex-row mt-3">
+                                    @if (!$post->image)
+                                        <img src="https://via.placeholder.com/150.png?text=Tidak+Ada+Gambar" width="20%"
+                                            alt="Tidak Ada Gambar">
+                                    @else
+                                        <img src="/storage/{{ $post->image }}" width="20%">
+                                    @endif
+                                    <div class="row ms-2">
+                                        <h5 class="card-title fs-4">{{ $post->title }} <span
+                                                class="position-absolute top-0 end-0 badge text-bg-secondary fs-6 fw-normal">{{ $post->category->name }}</span>
+                                        </h5>
+                                        <p>{{ $post->excerpt }} <a href="">baca selengkapnya</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- START THE FEATURETTES -->
+        <!-- START THE FEATURETTES -->
 
-    <hr class="featurette-divider">
+        {{-- <hr class="featurette-divider">
 
     <div class="row featurette mb-5">
         <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-color: #777;">
@@ -153,10 +160,9 @@
     </div>
     </div>
 
-    <hr class="featurette-divider">
+    <hr class="featurette-divider"> --}}
 
-    <!-- /END THE FEATURETTES -->
+        <!-- /END THE FEATURETTES -->
 
-</div><!-- /.container -->
-
+    </div><!-- /.container -->
 @endsection

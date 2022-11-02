@@ -21,26 +21,31 @@
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+{{-- <body class="d-flex flex-column min-vh-100"> --}}
 
-    <main>
+<body class="position-relative">
 
+    <main style="margin-bottom: 75vh">
+
+        <header>
+            {{-- <div class="bg-danger pt-5">aaa</div> --}}
+            @include('navbar.index')
+        </header>
         <div class="container">
-            <header>
-                @include('navbar.index')
-            </header>
 
             @yield('component')
         </div>
 
     </main>
     <!-- FOOTER -->
-    <footer class="container mt-auto">
-        <p class="float-end"><a href="#">Back to top</a></p>
+    <div class="container-fluid bg-primary position-absolute start-0 bottom-0 w-100 d-inline-block mt-5">
+        <footer class="py-5 mx-3">
+            @include('footer')
+            {{-- <p class="float-end"><a href="#">Back to top</a></p>
         <p>&copy; 2022 Pemerintah Kota Lubuklinggau &middot; <a href="#">Privacy</a> &middot; <a
-                href="#">Terms</a></p>
-    </footer>
-
+                href="#">Terms</a></p> --}}
+        </footer>
+    </div>
     <!-- Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
