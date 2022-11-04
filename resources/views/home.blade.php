@@ -53,7 +53,7 @@
 
 
     <!-- Marketing messaging and featurettes
-                                                                                                ================================================== -->
+                                                                                                                        ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
     <div class="marketing">
@@ -100,14 +100,39 @@
                             Semua Berita</a>
                     </div>
                     @foreach ($posts as $post)
+                        {{-- <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    @if (!$post->image)
+                                        <img class="img-fluid rounded-start"
+                                            src="https://via.placeholder.com/150.png?text=Tidak+Ada+Gambar" width="20%"
+                                            alt="Tidak Ada Gambar">
+                                    @else
+                                        <img class="img-fluid rounded-start" src="/storage/{{ $post->image }}"
+                                            width="20%" alt="{{ $post->title }}">
+                                    @endif
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $post->title }}</h5>
+                                        <p class="card-text">{{ $post->excerpt }} <a
+                                                href="/posts/show/{{ $post->id }}">baca
+                                                selengkapnya</a></p>
+                                        <p class="card-text"><small
+                                                class="text-muted">{{ $post->created_at->diffForHumans() }}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
                         <div class="col-md-12 mb-3 text-start">
                             <div class="card">
                                 <div class="card-body d-flex flex-row mt-3">
                                     @if (!$post->image)
-                                        <img src="https://via.placeholder.com/150.png?text=Tidak+Ada+Gambar" width="20%"
+                                        <img class="img-fluid"
+                                            src="https://via.placeholder.com/150.png?text=Tidak+Ada+Gambar" width="20%"
                                             alt="Tidak Ada Gambar">
                                     @else
-                                        <img src="/storage/{{ $post->image }}" width="20%">
+                                        <img class="img-fluid" src="/storage/{{ $post->image }}" width="20%">
                                     @endif
                                     <div class="row ms-2">
                                         <h5 class="card-title fs-4">{{ $post->title }} <span

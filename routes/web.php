@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use Illuminate\Http\Request;
+use TCG\Voyager\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +34,11 @@ Route::get('/admin/banner', [HomeController::class, 'banner']);
 
 Route::get('/profil-kelurahan', [HomeController::class, 'profile']);
 
-Route::get('/posts/all', function (Request $request) {
+Route::get('/posts/all', function () {
     return view('posts.index', [
         'menu' => menu('menu', '_json'),
-        'active' => MenuItem::select('title')->where('url', $request->getRequestUri())->first(),
+        'active' => MenuItem::select('title')->where('url', '/infografis')->first(),
+        'posts' => Post::latest()->get(),
     ]);
 });
 

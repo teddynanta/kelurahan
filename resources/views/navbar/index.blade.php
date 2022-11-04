@@ -1,7 +1,7 @@
 {{-- @dd($active) --}}
 <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top" id="navbar">
     <div class="container">
-        <a href="/"><img id="logo" class="navbar-brand mt-1" src="storage/{{ setting('site.logo') }}"
+        <a href="/"><img id="logo" class="navbar-brand mt-1" src="/storage/{{ setting('site.logo') }}"
                 alt="logo" height="60px"></a>
         <a class="navbar-brand d-block text-wrap lh-sm fw-normal text-uppercase" href="/" style="width: 20%">
             {{ setting('site.title') }}</a>
