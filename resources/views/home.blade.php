@@ -25,7 +25,7 @@
         </div>
     </div>
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-        <marquee class="mt-2" behavior="#" direction="">{{ setting('site.description') }}</marquee>
+        <marquee class="mt-4 pt-1" behavior="#" direction="">{{ setting('site.description') }}</marquee>
         <div class="carousel-indicators">
             @foreach ($banners as $banner)
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ $loop->index }}"
@@ -53,7 +53,7 @@
 
 
     <!-- Marketing messaging and featurettes
-                                                ================================================== -->
+                                                                                ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
     <div class="marketing">
@@ -79,8 +79,9 @@
                 <div id="img-gallery" class="carousel slide mt-4" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="mask" src="/storage/{{ $featured[0]->image }}" alt="{{ $featured[0]->title }}"
-                                width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+                            <img style="filter: brightness(50%)" src="/storage/{{ $featured[0]->image }}"
+                                alt="{{ $featured[0]->title }}" width="100%" height="100%"
+                                preserveAspectRatio="xMidYMid slice">
                             <div class="container">
                                 <div class="carousel-caption text-start">
                                     <h1>{{ $featured[0]->title }}</h1>

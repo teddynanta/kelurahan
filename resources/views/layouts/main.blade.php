@@ -38,7 +38,7 @@
 
     </main>
     <!-- FOOTER -->
-    <div class="container-fluid bg-primary position-absolute start-0 bottom-0 w-100 d-inline-block mt-5">
+    <div class="container-fluid bg-primary position-absolute start-0 bottom-0 w-100 d-inline-block mt-5 text-white">
         <footer class="py-5 mx-3">
             @include('footer')
             {{-- <p class="float-end"><a href="#">Back to top</a></p>
