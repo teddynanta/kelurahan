@@ -53,7 +53,7 @@
 
 
     <!-- Marketing messaging and featurettes
-                                                                                ================================================== -->
+                                                                                                ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
     <div class="marketing">
@@ -95,7 +95,8 @@
             <div class="col-md-6 themed-grid-col">
                 <div class="row">
                     <div class="col-md-3 mb-2 ms-auto me-3">
-                        <a href="/" class="badge rounded-pill bg-dark text-end text-decoration-none px-3 py-2">Lihat
+                        <a href="/posts/all"
+                            class="badge rounded-pill bg-primary text-end text-decoration-none px-3 py-2">Lihat
                             Semua Berita</a>
                     </div>
                     @foreach ($posts as $post)
@@ -112,7 +113,8 @@
                                         <h5 class="card-title fs-4">{{ $post->title }} <span
                                                 class="position-absolute top-0 end-0 badge text-bg-secondary fs-6 fw-normal">{{ $post->category->name }}</span>
                                         </h5>
-                                        <p>{{ $post->excerpt }} <a href="">baca selengkapnya</a></p>
+                                        <p>{{ $post->excerpt }} <a href="/posts/show/{{ $post->id }}">baca
+                                                selengkapnya</a></p>
                                     </div>
                                 </div>
                             </div>

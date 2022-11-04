@@ -1,9 +1,12 @@
 <?php
 
+use TCG\Voyager\Voyager;
+use TCG\Voyager\Models\Page;
+use TCG\Voyager\Models\MenuItem;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
-use Illuminate\Support\Facades\Route;
-use TCG\Voyager\Models\Page;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +32,13 @@ Route::get('/dump', function () {
 Route::get('/admin/banner', [HomeController::class, 'banner']);
 
 Route::get('/profil-kelurahan', [HomeController::class, 'profile']);
+
+Route::get('/posts/all', function (Request $request) {
+    return view('posts.index', [
+        'menu' => menu('menu', '_json'),
+        'active' => MenuItem::select('title')->where('url', $request->getRequestUri())->first(),
+    ]);
+});
 
 foreach ($uris as $uri) {
     Route::get('/' . $uri->slug, [HomeController::class, 'profile']);
