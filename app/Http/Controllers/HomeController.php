@@ -44,4 +44,13 @@ class HomeController extends Controller
             'active' => $active
         ]);
     }
+
+    public function posts(Request $request)
+    {
+        return view('posts.index', [
+            'menu' => menu('menu', '_json'),
+            'active' => MenuItem::select('title')->where('url', $request->getRequestUri())->first(),
+            'posts' => Post::latest()->get(),
+        ]);
+    }
 }

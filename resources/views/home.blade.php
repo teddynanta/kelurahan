@@ -53,7 +53,7 @@
 
 
     <!-- Marketing messaging and featurettes
-                                                                                                                        ================================================== -->
+                                                                                                                            ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
     <div class="marketing">
@@ -95,7 +95,7 @@
             <div class="col-md-6 themed-grid-col">
                 <div class="row">
                     <div class="col-md-3 mb-2 ms-auto me-3">
-                        <a href="/posts/all"
+                        <a href="/posts"
                             class="badge rounded-pill bg-primary text-end text-decoration-none px-3 py-2">Lihat
                             Semua Berita</a>
                     </div>

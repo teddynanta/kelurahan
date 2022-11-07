@@ -23,10 +23,10 @@
                                 href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ $item->title }}
                             </a>
-                            <ul class="dropdown-menu w-25">
+                            <ul class="dropdown-menu" style="font-size: 1em">
                                 @foreach ($item->children as $child)
                                     <li>
-                                        <a class="dropdown-item text-wrap"
+                                        <a class="dropdown-item text-wrap text-capitalize"
                                             href="{{ $child->url }}">{{ $child->title }}</a>
                                     </li>
                                     <hr class="w-75 mx-auto">
