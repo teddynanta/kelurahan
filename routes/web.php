@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use TCG\Voyager\Models\Post;
 
 /*
@@ -20,11 +21,17 @@ use TCG\Voyager\Models\Post;
 |
 */
 
-$uris = Page::select('slug')->get();
+// $uris = Page::select('slug')->get();
+$uris = MenuItem::select('url')->where('menu_id', 2)->where('url', '!=', '/')->where('url', '!=', '')->where('url', '!=', '/posts')->get();
+
+
 
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/dump', function () {
+
+    $uris = MenuItem::select('url')->where('menu_id', 2)->where('url', '!=', '/')->where('url', '!=', '')->where('url', '!=', '/posts')->get();
+    dd($uris);
     return view('navMenu', [
         'data' => menu('menu', '_json')
     ]);
@@ -32,13 +39,12 @@ Route::get('/dump', function () {
 
 Route::get('/admin/banner', [HomeController::class, 'banner']);
 
-Route::get('/profil-kelurahan', [HomeController::class, 'profile']);
-
 Route::get('/posts', [HomeController::class, 'posts']);
 
 foreach ($uris as $uri) {
-    Route::get('/' . $uri->slug, [HomeController::class, 'profile']);
+    Route::get($uri->url, [HomeController::class, 'profile']);
 }
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

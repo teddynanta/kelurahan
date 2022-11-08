@@ -3,8 +3,11 @@
 namespace App\Providers;
 
 use TCG\Voyager\Models\User;
+use TCG\Voyager\Models\MenuItem;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Request;
 
 class AppServiceProvider extends ServiceProvider
 {

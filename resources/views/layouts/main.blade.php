@@ -21,11 +21,9 @@
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 </head>
 
-{{-- <body class="d-flex flex-column min-vh-100"> --}}
+<body class="d-flex flex-column min-vh-100 pb-0">
 
-<body class="position-relative">
-
-    <main style="margin-bottom: 75vh">
+    <main>
 
         <header>
             {{-- <div class="bg-danger pt-5">aaa</div> --}}
@@ -38,7 +36,7 @@
 
     </main>
     <!-- FOOTER -->
-    <div class="container-fluid bg-primary position-absolute start-0 bottom-0 w-100 d-inline-block mt-5 text-white">
+    <div class="container-fluid bg-primary mt-auto text-white">
         <footer class="py-5 mx-3">
             @include('footer')
             {{-- <p class="float-end"><a href="#">Back to top</a></p>
