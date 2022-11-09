@@ -1,9 +1,10 @@
 {{-- @dd($active) --}}
 <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top" id="navbar">
     <div class="container">
-        <a href="/"><img id="logo" class="navbar-brand mt-1" src="/storage/{{ setting('site.logo') }}"
+        <a href="/"><img id="logo" class="navbar-brand mx-auto my-auto" src="/storage/{{ setting('site.logo') }}"
                 alt="logo" height="60px"></a>
-        <a class="navbar-brand d-block text-wrap lh-sm fw-normal text-uppercase" href="/" style="width: 20%">
+        <a class="navbar-brand d-block text-wrap ms-2 lh-sm fw-normal text-uppercase" href="/"
+            style=" max-width: 20vmax">
             {{ setting('site.title') }}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

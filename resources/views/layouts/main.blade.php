@@ -19,21 +19,19 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column min-vh-100 pb-0">
 
+
+    <header>
+        @include('navbar.index')
+    </header>
     <main>
-
-        <header>
-            {{-- <div class="bg-danger pt-5">aaa</div> --}}
-            @include('navbar.index')
-        </header>
         <div class="container">
-
             @yield('component')
         </div>
-
     </main>
     <!-- FOOTER -->
     <div class="container-fluid bg-primary mt-auto text-white">
