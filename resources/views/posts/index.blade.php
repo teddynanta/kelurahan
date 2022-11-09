@@ -2,7 +2,7 @@
 @section('component')
     <div class="row mt-5">
         @foreach ($posts as $post)
-            <div class="col-sm-4 mb-3 mx-auto">
+            <div class="col-md-4 mb-3 mx-auto">
                 <div class="card" style="min-height: 500px">
                     <div class="card-body d-flex flex-column">
                         @if (!$post->image)
@@ -20,4 +20,5 @@
                 </div>
             </div>
         @endforeach
-    @endsection
+    </div>
+@endsection
