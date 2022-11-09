@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Feature;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use TCG\Voyager\Models\Menu;
@@ -21,7 +22,8 @@ class HomeController extends Controller
             'banners' => Banner::orderBy('order', 'asc')->get(),
             'features' => Feature::get(),
             'featured' => Post::where('featured', 1)->latest()->get(),
-            'menu' => menu('menu', '_json')
+            'menu' => menu('menu', '_json'),
+            'time' => Carbon::now(),
         ]);
     }
 
