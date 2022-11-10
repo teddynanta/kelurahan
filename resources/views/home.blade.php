@@ -136,7 +136,7 @@
                     <article class="blog-post">
                         <h2 class="blog-post-title mb-1">{{ $post->title }}</h2>
                         <p class="blog-post-meta">{{ $post->created_at->format('j F, Y') }} by <a
-                                href="#">Jacob</a></p>
+                                href="#">{{ $post->authorId['name'] }}</a></p>
 
                         <p>This is some additional paragraph placeholder content. It has been written to fill the available
                             space and show how a longer snippet of text affects the surrounding content. We'll repeat it
