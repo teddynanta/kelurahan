@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
         return view('home', [
             'active' => MenuItem::select('title')->where('url', $request->getRequestUri())->first(),
-            'posts' => Post::latest()->limit(3)->get(),
+            'posts' => Post::latest()->limit(2)->get(),
             'banners' => Banner::orderBy('order', 'asc')->get(),
             'features' => Feature::get(),
             'featured' => Post::where('featured', 1)->latest()->get(),
