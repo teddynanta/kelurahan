@@ -6,7 +6,7 @@
             @if ($data->image)
                 <img class="mx-auto" src="/storage/{{ $data->image }}" alt="{{ $data->title }}" style="max-width: 50vmax">
             @endif
-            <div class="col-md-12 text-start">
+            <div class="col-md-12">
                 <p>{!! $data->body !!}</p>
             </div>
         @else
