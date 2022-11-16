@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Feature;
+use App\Models\Infographic;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -27,9 +28,22 @@ class HomeController extends Controller
         ]);
     }
 
-    public function banner()
+    public function infografis(Request $request)
     {
-        return view('banner');
+        return view('infographics.index', [
+            'menu' => menu('menu', '_json'),
+            'active' => MenuItem::select('title')->where('url', $request->getRequestUri())->first(),
+            'posts' => Infographic::latest()->get(),
+        ]);
+    }
+
+    public function showinfografis(Infographic $id)
+    {
+        return view('infographics.show', [
+            'menu' => menu('menu', '_json'),
+            'active' => MenuItem::select('title')->where('url', '/infografis')->first(),
+            'post' => $id,
+        ]);
     }
 
     public function profile(Request $request)

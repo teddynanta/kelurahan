@@ -1,16 +1,21 @@
 @extends('layouts.main')
 @section('component')
-    <div class="row text-center mt-5">
-        @if ($data)
-            <h3>{{ $data->title }}</h3>
-            @if ($data->image)
-                <img class="mx-auto" src="/storage/{{ $data->image }}" alt="{{ $data->title }}" style="max-width: 50vmax">
+    <div class="row g-5 mt-2">
+        <div class="col-md-8">
+            @if ($data)
+                <h3 class="text-center mb-3">{{ $data->title }}</h3>
+                @if ($data->image)
+                    <img class="mx-auto mb-3" src="/storage/{{ $data->image }}" alt="{{ $data->title }}"
+                        style="max-width: 50vmax">
+                @endif
+                {!! $data->body !!}
+            @else
+                <h2 class="text-center my-3">Belum ada konten yang bisa ditampilkan</h2>
             @endif
-            <div class="col-md-12">
-                <p>{!! $data->body !!}</p>
-            </div>
-        @else
-            <h1 class="my-3">Belum ada konten yang bisa ditampilkan</h1>
-        @endif
+
+        </div>
+        <div class="col-md-4">
+            @include('sidemenu')
+        </div>
     </div>
 @endsection
