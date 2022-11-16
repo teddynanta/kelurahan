@@ -55,4 +55,13 @@ class HomeController extends Controller
             'posts' => Post::latest()->get(),
         ]);
     }
+
+    public function showPost(Post $id)
+    {
+        return view('posts.show', [
+            'menu' => menu('menu', '_json'),
+            'active' => MenuItem::select('title')->where('url', '/posts')->first(),
+            'post' => $id,
+        ]);
+    }
 }

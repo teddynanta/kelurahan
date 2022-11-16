@@ -40,6 +40,7 @@ Route::get('/dump', function () {
 Route::get('/admin/banner', [HomeController::class, 'banner']);
 
 Route::get('/posts', [HomeController::class, 'posts']);
+Route::get('/posts/show/{id:id}', [HomeController::class, 'showPost']);
 
 foreach ($uris as $uri) {
     Route::get($uri->url, [HomeController::class, 'profile']);
