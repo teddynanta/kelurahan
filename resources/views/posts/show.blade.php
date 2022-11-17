@@ -5,6 +5,10 @@
             <article class="blog-post">
                 <h1 class="mt-5 blog-post-title">{{ $post->title }}</h1>
                 <p class="blog-post-meta">{{ $post->created_at->format('j F, Y') }} by {{ $post->authorId['name'] }}</p>
+                @if ($post->image)
+                    <img class="mx-auto mb-3" style="max-width: 50vmax" src="/storage/{{ $post->image }}"
+                        alt="{{ $post->title }}">
+                @endif
                 {!! $post->body !!}
             </article>
         </div>

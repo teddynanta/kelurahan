@@ -96,8 +96,9 @@
             <div class="col-md-8">
                 @foreach ($posts as $post)
                     <article class="blog-post">
-                        <h2 class="blog-post-title mb-1">{{ $post->title }}<span
-                                class="badge bg-primary badge-primary fs-6">{{ $post->category['name'] }}</span></h2>
+                        <h2 class="blog-post-title mb-1">{{ $post->title }} <span class="badge text-bg-primary"
+                                style="font-size: .3em">{{ $post->category['name'] }}</span>
+                        </h2>
                         <p class="blog-post-meta">{{ $post->created_at->format('j F, Y') }} by
                             {{ $post->authorId['name'] }}</p>
                         {!! \Illuminate\Support\Str::limit($post->body, 300, $end = '...') !!}
