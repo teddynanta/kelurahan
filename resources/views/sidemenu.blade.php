@@ -8,16 +8,17 @@
         <p class="mb-0">{{ setting('site.description') }}</p>
     </div>
 
+    <div class="vanilla-calendar"></div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth'
-            });
-            calendar.render();
+        const calendar = new VanillaCalendar({
+            HTMLElement: document.querySelector('.vanilla-calendar'),
+            date: new Date('2022-01-01'),
+            settings: {
+                iso8601: false,
+            },
         });
+        calendar.init();
     </script>
-    <div id="calendar"></div>
 
     <a class="weatherwidget-io" href="https://forecast7.com/en/n3d30102d86/lubuklinggau/"
         data-label_1="{{ setting('site.title') }}" data-icons="Climacons"

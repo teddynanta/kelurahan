@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ setting('site.title') }}</title>
-    <!-- FullCalendar.io -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+    <!-- Vanilla Calender -->
+    <link rel="stylesheet" href="{{ asset('assets/vanilla-calender-main/build/vanilla-calendar.min.css') }}">
     <!-- Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <!-- Bootstrap -->
@@ -65,8 +65,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Swiper -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <!-- FullCalendar.io -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <!-- Vanilla Calendar -->
+    <script src="{{ asset('assets/vanilla-calender-main/build/vanilla-calendar.min.js') }}"></script>
 
 
 </body>
