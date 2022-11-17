@@ -41,14 +41,6 @@
                 </div>
             @endforeach
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
 
     <div class="marketing">
@@ -70,19 +62,19 @@
         </div>
 
         <div class="row mb-2">
-            @foreach ($posts as $post)
+            @foreach ($featured as $ftr)
                 <div class="col-md-6">
                     <div
                         class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                         <div class="col p-4 d-flex flex-column position-static">
-                            <strong class="d-inline-block mb-2 text-success">{{ $post->category['name'] }}</strong>
-                            <h3 class="mb-0">{{ $post->title }}</h3>
-                            <div class="mb-1 text-muted">{{ $post->created_at->format('M j') }}</div>
-                            <p class="card-text mb-auto text-muted">{!! $post->excerpt !!}</p>
-                            <a href="/posts/show/{{ $post->id }}" class="stretched-link">Continue reading</a>
+                            <strong class="d-inline-block mb-2 text-success">{{ $ftr->category['name'] }}</strong>
+                            <h3 class="mb-0">{{ $ftr->title }}</h3>
+                            <div class="mb-1 text-muted">{{ $ftr->created_at->format('M j') }}</div>
+                            <p class="card-text mb-auto text-muted">{!! $ftr->excerpt !!}</p>
+                            <a href="/posts/show/{{ $ftr->id }}" class="stretched-link">Continue reading</a>
                         </div>
                         <div class="col-auto d-none d-lg-block">
-                            @if (!$post->image)
+                            @if (!$ftr->image)
                                 <svg class="bd-placeholder-img" width="200" height="250"
                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                                     preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -91,8 +83,8 @@
                                         fill="#eceeef" dy=".3em">Tidak ada gambar</text>
                                 </svg>
                             @else
-                                <img src="/storage/{{ $post->image }}" style="object-fit: cover" height="250"
-                                    width="200" alt="{{ $post->title }}">
+                                <img src="/storage/{{ $ftr->image }}" style="object-fit: cover" height="250"
+                                    width="200" alt="{{ $ftr->title }}">
                             @endif
                         </div>
                     </div>
@@ -104,10 +96,14 @@
             <div class="col-md-8">
                 @foreach ($posts as $post)
                     <article class="blog-post">
-                        <h2 class="blog-post-title mb-1">{{ $post->title }}</h2>
-                        <p class="blog-post-meta">{{ $post->created_at->format('j F, Y') }} by <a
-                                href="#">{{ $post->authorId['name'] }}</a></p>
-                        {!! $post->body !!}
+                        <h2 class="blog-post-title mb-1">{{ $post->title }}<span
+                                class="badge bg-primary badge-primary fs-6">{{ $post->category['name'] }}</span></h2>
+                        <p class="blog-post-meta">{{ $post->created_at->format('j F, Y') }} by
+                            {{ $post->authorId['name'] }}</p>
+                        {!! \Illuminate\Support\Str::limit($post->body, 300, $end = '...') !!}
+                        <a class="btn btn-outline-primary d-block w-25 mt-3 rounded-sm"
+                            href="/posts/show/{{ $post->id }}">baca
+                            selengkapnya</a>
 
                     </article>
                 @endforeach

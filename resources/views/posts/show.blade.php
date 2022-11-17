@@ -4,8 +4,7 @@
         <div class="col-md-8">
             <article class="blog-post">
                 <h1 class="mt-5 blog-post-title">{{ $post->title }}</h1>
-                <p class="blog-post-meta">{{ $post->created_at->format('j F, Y') }} by <a
-                        href="#">{{ $post->authorId['name'] }}</a></p>
+                <p class="blog-post-meta">{{ $post->created_at->format('j F, Y') }} by {{ $post->authorId['name'] }}</p>
                 {!! $post->body !!}
             </article>
         </div>

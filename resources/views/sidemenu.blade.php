@@ -8,6 +8,21 @@
         <p class="mb-0">{{ setting('site.description') }}</p>
     </div>
 
+    <a class="weatherwidget-io" href="https://forecast7.com/en/n3d30102d86/lubuklinggau/"
+        data-label_1="{{ setting('site.title') }}" data-icons="Climacons"
+        data-theme="pure">{{ setting('site.title') }}</a>
+    <script>
+        ! function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = 'https://weatherwidget.io/js/widget.min.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        }(document, 'script', 'weatherwidget-io-js');
+    </script>
+
     <div class="p-4">
         <h4 class="fst-italic">Archives</h4>
         <ol class="list-unstyled mb-0">
