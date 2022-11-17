@@ -91,6 +91,53 @@
                 </div>
             @endforeach
         </div>
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <!-- Slider main container -->
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">Slide 1</div>
+                        <div class="swiper-slide">Slide 2</div>
+                        <div class="swiper-slide">Slide 3</div>
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                    <!-- If we need scrollbar -->
+                    <div class="swiper-scrollbar"></div>
+                </div>
+
+                <script>
+                    const swiper = new Swiper('.swiper', {
+                        // Optional parameters
+                        direction: 'vertical',
+                        loop: true,
+
+                        // If we need pagination
+                        pagination: {
+                            el: '.swiper-pagination',
+                        },
+
+                        // Navigation arrows
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+
+                        // And if we need scrollbar
+                        scrollbar: {
+                            el: '.swiper-scrollbar',
+                        },
+                    });
+                </script>
+            </div>
+        </div>
 
         <div class="row g-5">
             <div class="col-md-8">
@@ -105,7 +152,6 @@
                         <a class="btn btn-outline-primary d-block w-25 mt-3 rounded-sm"
                             href="/posts/show/{{ $post->id }}">baca
                             selengkapnya</a>
-
                     </article>
                 @endforeach
                 <nav class="blog-pagination" aria-label="Pagination">

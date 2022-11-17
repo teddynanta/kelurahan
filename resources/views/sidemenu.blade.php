@@ -8,6 +8,17 @@
         <p class="mb-0">{{ setting('site.description') }}</p>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.render();
+        });
+    </script>
+    <div id="calendar"></div>
+
     <a class="weatherwidget-io" href="https://forecast7.com/en/n3d30102d86/lubuklinggau/"
         data-label_1="{{ setting('site.title') }}" data-icons="Climacons"
         data-theme="pure">{{ setting('site.title') }}</a>
