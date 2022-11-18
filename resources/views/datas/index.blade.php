@@ -3,39 +3,37 @@
     <div class="row g-5 mt-2">
         <div class="col-md-8">
             <h2 class="text-center">{{ $active->title }}</h2>
-            @if ($data)
-                <div>
-                    <canvas id="myChart"></canvas>
-                </div>
-                <script>
-                    const ctx = document.getElementById('myChart');
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
 
-                    new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: ['Laki-laki', 'Perempuan'],
-                            datasets: [{
-                                label: 'My First Dataset',
-                                data: [foreac],
-                                backgroundColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(54, 162, 235)'
-                                ],
-                                hoverOffset: 4
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Laki-laki', 'Perempuan'],
+                        datasets: [{
+                            label: 'Jumlah',
+                            data: [677, 672],
+                            backgroundColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(54, 162, 235)'
+                            ],
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
                             }
                         }
-                    });
-                </script>
-            @else
-                <h2 class="text-center my-3">Belum ada konten yang bisa ditampilkan</h2>
-            @endif
+                    }
+                });
+            </script>
 
         </div>
         <div class="col-md-4">
