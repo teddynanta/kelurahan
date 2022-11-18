@@ -28,6 +28,17 @@ class HomeController extends Controller
         ]);
     }
 
+    public function datas(Request $request)
+    {
+        $url = 'https://api.sheety.co/96f45b5f884f17fe60bb0490f39974cd/jumlahPenduduk/sheet1';
+        $data = file_get_contents($url);
+        return view('datas.index', [
+            'menu' => menu('menu', '_json'),
+            'active' => MenuItem::select('title')->where('url', $request->getRequestUri())->first(),
+            'data' => $data,
+        ]);
+    }
+
     public function infografis(Request $request)
     {
         return view('infographics.index', [
