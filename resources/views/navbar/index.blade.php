@@ -15,8 +15,16 @@
                 @foreach ($menu as $item)
                     @if ($item->children->isEmpty())
                         <li class="nav-item">
-                            <a class="nav-link {{ $active->title === $item->title ? 'active fw-bold' : '' }}"
-                                aria-current="page" href="{{ $item->url }}">{{ $item->title }}</a>
+                            @if ($item->title == 'Login')
+                                @auth
+                                    <a class="nav-link" aria-current="page" href="/admin">Dashboard</a>
+                                @else
+                                    <a class="nav-link" aria-current="page" href="/admin/login">Login</a>
+                                @endauth
+                            @else
+                                <a class="nav-link {{ $active->title === $item->title ? 'active fw-bold' : '' }}"
+                                    aria-current="page" href="{{ $item->url }}">{{ $item->title }}</a>
+                            @endif
                         </li>
                     @else
                         <li class="nav-item dropdown">
