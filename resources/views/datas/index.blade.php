@@ -6,12 +6,13 @@
             <div>
                 <canvas id="myChart"></canvas>
             </div>
-
+            <input type="radio" name="" id="">
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
                 const ctx = document.getElementById('myChart');
 
                 new Chart(ctx, {
+                    var labels = {{ Js::from($labels) }}
                     type: 'pie',
                     data: {
                         labels: ['Laki-laki', 'Perempuan'],

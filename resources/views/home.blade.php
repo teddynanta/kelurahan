@@ -61,12 +61,6 @@
             @endforeach
         </div>
 
-        <div>
-            <canvas id="myChart"></canvas>
-        </div>
-
-
-
         <div class="row mb-2">
             @foreach ($featured as $ftr)
                 <div class="col-md-6">
