@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Feature;
 use App\Models\Infographic;
+use App\Models\Job;
 use App\Models\Population;
+use App\Models\Religion;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -35,7 +37,9 @@ class HomeController extends Controller
         return view('datas.index', [
             'menu' => menu('menu', '_json'),
             'active' => MenuItem::select('title')->where('url', $request->getRequestUri())->first(),
-            'data' => Population::first(),
+            'populations' => Population::first(),
+            'religions' => Religion::first(),
+            'jobs' => Job::first()
         ]);
     }
 
