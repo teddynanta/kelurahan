@@ -12,10 +12,8 @@
                             <img class="img-fluid mb-2" src="/storage/{{ $post->image }}">
                         @endif
                         <h5 class="card-title">{{ $post->title }}</h5>
-                        <p class="card-text">{{ $post->excerpt }}<a href="/infografis/show/{{ $post->id }}">baca
-                                selengkapnya</a></p>
-                        <a href="#" class="btn btn-primary align-self-center mt-auto">Go
-                            somewhere</a>
+                        <a href="/infografis/show/{{ $post->id }}"
+                            class="btn btn-primary align-self-center mt-auto">Lihat Infografis</a>
                     </div>
                 </div>
             </div>

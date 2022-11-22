@@ -11,6 +11,7 @@ use App\Models\Religion;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use TCG\Voyager\Models\Category;
 use TCG\Voyager\Models\Menu;
 use TCG\Voyager\Models\MenuItem;
 use TCG\Voyager\Models\Page;
@@ -28,6 +29,7 @@ class HomeController extends Controller
             'featured' => Post::where('featured', 1)->latest()->limit(2)->get(),
             'menu' => menu('menu', '_json'),
             'time' => Carbon::now(),
+            'categories' => Category::all(),
         ]);
     }
 
@@ -37,9 +39,10 @@ class HomeController extends Controller
         return view('datas.index', [
             'menu' => menu('menu', '_json'),
             'active' => MenuItem::select('title')->where('url', $request->getRequestUri())->first(),
-            'populations' => Population::first(),
-            'religions' => Religion::first(),
-            'jobs' => Job::first()
+            'populations' => Population::where('tahun', Carbon::now()->year)->first(),
+            'religions' => Religion::where('tahun', Carbon::now()->year)->first(),
+            'jobs' => Job::where('tahun', Carbon::now()->year)->first(),
+            'categories' => Category::all(),
         ]);
     }
 
@@ -49,6 +52,7 @@ class HomeController extends Controller
             'menu' => menu('menu', '_json'),
             'active' => MenuItem::select('title')->where('url', $request->getRequestUri())->first(),
             'posts' => Infographic::latest()->get(),
+            'categories' => Category::all(),
         ]);
     }
 
@@ -58,6 +62,7 @@ class HomeController extends Controller
             'menu' => menu('menu', '_json'),
             'active' => MenuItem::select('title')->where('url', '/infografis')->first(),
             'post' => $id,
+            'categories' => Category::all(),
         ]);
     }
 
@@ -72,16 +77,23 @@ class HomeController extends Controller
         return view('pages.index', [
             'data' => Page::where('slug', ltrim($request->getRequestUri(), '/'))->first(),
             'menu' => menu('menu', '_json'),
-            'active' => $active
+            'active' => $active,
+            'categories' => Category::all(),
         ]);
     }
 
-    public function posts(Request $request)
+    public function posts()
     {
+        if (!request('category')) {
+            $post = Post::latest()->get();
+        } else {
+            $post = Post::where('category_id', request('category'))->latest()->get();
+        }
         return view('posts.index', [
             'menu' => menu('menu', '_json'),
-            'active' => MenuItem::select('title')->where('url', $request->getRequestUri())->first(),
-            'posts' => Post::latest()->get(),
+            'active' => MenuItem::select('title')->where('url', '/posts')->first(),
+            'posts' => $post,
+            'categories' => Category::all(),
         ]);
     }
 
@@ -91,6 +103,7 @@ class HomeController extends Controller
             'menu' => menu('menu', '_json'),
             'active' => MenuItem::select('title')->where('url', '/posts')->first(),
             'post' => $id,
+            'categories' => Category::all(),
         ]);
     }
 }

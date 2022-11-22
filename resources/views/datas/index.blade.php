@@ -38,7 +38,7 @@
                                 {{ json_encode($populations['perempuan']) }}
                             ],
                             backgroundColor: [
-                                'rgb(54, 162, 235)',
+                                'rgb(100, 143, 255)',
                                 'rgb(255, 99, 132)'
                             ],
                             hoverOffset: 4,
@@ -63,8 +63,8 @@
                                 {{ json_encode($populations['wna']) }}
                             ],
                             backgroundColor: [
-                                'rgb(184, 215, 157)',
-                                'rgb(188, 157, 215)'
+                                'rgb(255, 99, 132)',
+                                'rgb(100, 143, 255)'
                             ],
                             hoverOffset: 4
                         }]

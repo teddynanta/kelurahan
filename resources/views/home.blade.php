@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('component')
+    {{-- @dd($posts) --}}
     <div class="modal fade" id="exampleModal" tabindex="5" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -155,6 +156,7 @@
                     </article>
                 @endforeach
                 <nav class="blog-pagination" aria-label="Pagination">
+                    {{ $posts->links() }}
                     <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
                     <a class="btn btn-outline-secondary rounded-pill disabled">Newer</a>
                 </nav>

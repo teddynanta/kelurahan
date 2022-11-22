@@ -14,8 +14,8 @@
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p class="card-text">{{ $post->excerpt }}<a href="/posts/show/{{ $post->id }}">baca
                                 selengkapnya</a></p>
-                        <a href="#" class="btn btn-primary align-self-center mt-auto">Go
-                            somewhere</a>
+                        <a href="/posts/show/{{ $post->id }}" class="btn btn-primary align-self-center mt-auto">Lihat
+                            Berita</a>
                     </div>
                 </div>
             </div>
