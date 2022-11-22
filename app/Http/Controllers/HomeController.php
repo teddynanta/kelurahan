@@ -21,8 +21,9 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
+        $url = explode('?', $request->getRequestUri());
         return view('home', [
-            'active' => MenuItem::select('title')->where('url', $request->getRequestUri())->first(),
+            'active' => MenuItem::select('title')->where('url', $url[0])->first(),
             'posts' => Post::latest()->where('featured', 0)->paginate(5),
             'banners' => Banner::orderBy('order', 'asc')->get(),
             'features' => Feature::get(),
@@ -82,8 +83,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function posts()
+    public function posts(Request $request)
     {
+        $url = explode('?', $request->getRequestUri());
         if (!request('category')) {
             $post = Post::latest()->get();
         } else {
@@ -91,7 +93,7 @@ class HomeController extends Controller
         }
         return view('posts.index', [
             'menu' => menu('menu', '_json'),
-            'active' => MenuItem::select('title')->where('url', '/posts')->first(),
+            'active' => MenuItem::select('title')->where('url', $url[0])->first(),
             'posts' => $post,
             'categories' => Category::all(),
         ]);

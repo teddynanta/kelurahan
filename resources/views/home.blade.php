@@ -140,7 +140,7 @@
             </div>
         </div>
 
-        <div class="row g-5">
+        <div id="blog-post" class="row g-5">
             <div class="col-md-8">
                 @foreach ($posts as $post)
                     <article class="blog-post">
@@ -156,9 +156,10 @@
                     </article>
                 @endforeach
                 <nav class="blog-pagination" aria-label="Pagination">
-                    {{ $posts->links() }}
-                    <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
-                    <a class="btn btn-outline-secondary rounded-pill disabled">Newer</a>
+                    <a class="btn rounded-pill {{ $posts->currentPage() === 1 ? 'btn-outline-secondary disabled' : 'btn-outline-primary' }}"
+                        href="{{ $posts->previousPageUrl() }}#blog-post">Sebelumnya</a>
+                    <a class="btn rounded-pill {{ $posts->currentPage() === $posts->lastPage() ? 'btn-outline-secondary disabled' : 'btn-outline-primary' }}"
+                        href="{{ $posts->nextPageUrl() }}#blog-post">Selanjutnya</a>
                 </nav>
 
             </div>

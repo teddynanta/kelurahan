@@ -25,7 +25,7 @@
     </script>
 
     <div class="p-4">
-        <h4 class="fst-italic">Categories</h4>
+        <h4 class="fst-italic">Kategori</h4>
         <ol class="list-unstyled mb-0">
             @foreach ($categories as $category)
                 <li><a href="/posts?category={{ $category->id }}">{{ $category->name }}</a></li>
