@@ -2,29 +2,6 @@
 
 @section('component')
     {{-- @dd($posts) --}}
-    <div class="modal fade" id="exampleModal" tabindex="5" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cari Berita</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="text" class="form-control" name="search">
-                    <div class="form-text">
-                        Ketikkan judul atau isi berita yang ingin anda cari.
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form action="" method="post">
-                        @csrf
-                        <button type="button" class="btn btn-primary">Cari</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <marquee class="mt-4 pt-1" behavior="#" direction="">{{ setting('site.description') }}</marquee>
         <div class="carousel-indicators">
@@ -100,28 +77,30 @@
 
         <div id="blog-post" class="row g-5">
             <div class="col-md-8">
-                @foreach ($posts as $post)
-                    <article class="blog-post">
-                        <h2 class="blog-post-title mb-1">{{ $post->title }} <span class="badge text-bg-primary"
-                                style="font-size: .3em">{{ $post->category['name'] }}</span>
-                        </h2>
-                        <p class="blog-post-meta">{{ $post->created_at->format('j F, Y') }} by
-                            {{ $post->authorId['name'] }}</p>
-                        {!! \Illuminate\Support\Str::limit($post->body, 300, $end = '...') !!}
-                        <a class="btn btn-outline-primary d-block w-25 mt-3 rounded-sm"
-                            href="/posts/show/{{ $post->id }}">baca
-                            selengkapnya</a>
-                    </article>
-                @endforeach
-                <nav class="blog-pagination" aria-label="Pagination">
-                    <a class="btn rounded-pill {{ $posts->currentPage() === 1 ? 'btn-outline-secondary disabled' : 'btn-outline-primary' }}"
-                        href="{{ $posts->previousPageUrl() }}#blog-post">Sebelumnya</a>
-                    <a class="btn rounded-pill {{ $posts->currentPage() === $posts->lastPage() ? 'btn-outline-secondary disabled' : 'btn-outline-primary' }}"
-                        href="{{ $posts->nextPageUrl() }}#blog-post">Selanjutnya</a>
-                </nav>
-
+                @if ($posts->count())
+                    @foreach ($posts as $post)
+                        <article class="blog-post">
+                            <h2 class="blog-post-title mb-1">{{ $post->title }} <span class="badge text-bg-primary"
+                                    style="font-size: .3em">{{ $post->category['name'] }}</span>
+                            </h2>
+                            <p class="blog-post-meta">{{ $post->created_at->format('j F, Y') }} by
+                                {{ $post->authorId['name'] }}</p>
+                            {!! \Illuminate\Support\Str::limit($post->body, 300, $end = '...') !!}
+                            <a class="btn btn-outline-primary d-block w-25 mt-3 rounded-sm"
+                                href="/posts/show/{{ $post->id }}">baca
+                                selengkapnya</a>
+                        </article>
+                    @endforeach
+                    <nav class="blog-pagination" aria-label="Pagination">
+                        <a class="btn rounded-pill {{ $posts->currentPage() === 1 ? 'btn-outline-secondary disabled' : 'btn-outline-primary' }}"
+                            href="{{ $posts->previousPageUrl() }}#blog-post">Sebelumnya</a>
+                        <a class="btn rounded-pill {{ $posts->currentPage() === $posts->lastPage() ? 'btn-outline-secondary disabled' : 'btn-outline-primary' }}"
+                            href="{{ $posts->nextPageUrl() }}#blog-post">Selanjutnya</a>
+                    </nav>
+                @else
+                    <p class="text-center fs-4">Tidak ada berita yang sesuai.</p>
+                @endif
             </div>
-
             <div class="col-md-4">
                 @include('sidemenu')
             </div>

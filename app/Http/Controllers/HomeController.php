@@ -24,7 +24,7 @@ class HomeController extends Controller
         $url = explode('?', $request->getRequestUri());
         return view('home', [
             'active' => MenuItem::select('title')->where('url', $url[0])->first(),
-            'posts' => Post::latest()->where('featured', 0)->paginate(5),
+            'posts' => Post::latest()->where('featured', 0)->filter(request(['search']))->paginate(5)->withQueryString(),
             'banners' => Banner::orderBy('order', 'asc')->get(),
             'features' => Feature::get(),
             'featured' => Post::where('featured', 1)->latest()->limit(2)->get(),
@@ -87,9 +87,9 @@ class HomeController extends Controller
     {
         $url = explode('?', $request->getRequestUri());
         if (!request('category')) {
-            $post = Post::latest()->get();
+            $post = Post::latest()->filter(request(['search']))->get();
         } else {
-            $post = Post::where('category_id', request('category'))->latest()->get();
+            $post = Post::where('category_id', request('category'))->latest()->filter(request(['search']))->get();
         }
         return view('posts.index', [
             'menu' => menu('menu', '_json'),

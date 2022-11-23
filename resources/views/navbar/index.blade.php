@@ -53,3 +53,26 @@
         </div>
     </div>
 </nav>
+<form action="{{ $active->title === 'Beranda' ? '/#blog-post' : '/posts' }}">
+    <div class="modal fade" id="exampleModal" tabindex="5" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cari Berita</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" name="search" value="{{ request('search') }}"
+                        autofocus>
+                    <div class="form-text">
+                        Ketikkan judul atau isi berita yang ingin anda cari.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Cari</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
