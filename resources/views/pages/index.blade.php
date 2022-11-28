@@ -7,15 +7,19 @@
                     <div style="height: 35vmax">
                         <h5>{{ $data->title }} di {{ setting('site.title') }} Tahun {{ $charts->tahun }}
                         </h5>
+                        <p></p>
                         <canvas id="data" class="mb-5"></canvas>
                     </div>
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <script>
                         const data = document.getElementById('data');
+                        var charts = {{ json_encode($charts) }};
+                        var array1 = ['masjid', 'gereja']
+                        console.log(array1);
                         new Chart(data, {
                             type: 'bar',
                             data: {
-                                labels: ['{{ $schema[3] }}'],
+                                labels: array1,
                                 datasets: [{
                                     label: 'Jumlah',
                                     data: [{{ $charts->masjid }}],
