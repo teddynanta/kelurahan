@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Feature;
+use App\Models\Healthcare;
 use App\Models\Infographic;
 use App\Models\Job;
 use App\Models\Population;
 use App\Models\Religion;
+use App\Models\School;
+use App\Models\Worship;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -80,6 +83,9 @@ class HomeController extends Controller
             'menu' => menu('menu', '_json'),
             'active' => $active,
             'categories' => Category::all(),
+            'schools' => School::where('tahun', Carbon::now()->year)->first(),
+            'worships' => Worship::where('tahun', Carbon::now()->year)->first(),
+            'healthcares' => Healthcare::where('tahun', Carbon::now()->year)->first(),
         ]);
     }
 
