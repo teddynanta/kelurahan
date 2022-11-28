@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banner;
-use App\Models\Feature;
-use App\Models\Healthcare;
-use App\Models\Infographic;
-use App\Models\Job;
-use App\Models\Population;
-use App\Models\Religion;
-use App\Models\School;
-use App\Models\Worship;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Job;
+use App\Models\Banner;
+use App\Models\School;
+use App\Models\Feature;
+use App\Models\Worship;
+use App\Models\Religion;
+use App\Models\Healthcare;
+use App\Models\Population;
+use App\Models\Infographic;
 use Illuminate\Http\Request;
-use TCG\Voyager\Models\Category;
 use TCG\Voyager\Models\Menu;
-use TCG\Voyager\Models\MenuItem;
 use TCG\Voyager\Models\Page;
 use TCG\Voyager\Models\Post;
+use TCG\Voyager\Models\Category;
+use TCG\Voyager\Models\MenuItem;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\Builder;
 
 class HomeController extends Controller
 {
@@ -78,14 +79,26 @@ class HomeController extends Controller
         } else {
             $active = MenuItem::select('title')->where('id', $id->parent_id)->first();
         }
+        if ($request->getRequestUri() == '/sarana-keagamaan') {
+            $charts = Worship::where('tahun', Carbon::now()->year)->first();
+        } elseif ($request->getRequestUri() == '/sarana-pendidikan') {
+            $charts = School::where('tahun', Carbon::now()->year)->first();
+        } else {
+            $charts = Healthcare::where('tahun', Carbon::now()->year)->first();
+        }
+        $schema = collect(Schema::getColumnListing($charts->getTable()));
         return view('pages.index', [
             'data' => Page::where('slug', ltrim($request->getRequestUri(), '/'))->first(),
             'menu' => menu('menu', '_json'),
             'active' => $active,
             'categories' => Category::all(),
-            'schools' => School::where('tahun', Carbon::now()->year)->first(),
-            'worships' => Worship::where('tahun', Carbon::now()->year)->first(),
-            'healthcares' => Healthcare::where('tahun', Carbon::now()->year)->first(),
+            'charts' => $charts,
+            'schema' => $schema->flip()->except([
+                'id',
+                'tahun',
+                'created_at',
+                'updated_at'
+            ])->flip(),
         ]);
     }
 

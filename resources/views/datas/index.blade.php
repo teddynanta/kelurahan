@@ -34,8 +34,8 @@
                         labels: ['Laki-laki', 'Perempuan'],
                         datasets: [{
                             label: 'Jumlah',
-                            data: [{{ json_encode($populations['laki_laki']) }},
-                                {{ json_encode($populations['perempuan']) }}
+                            data: [{{ $populations->laki_laki }},
+                                {{ $populations->perempuan }}
                             ],
                             backgroundColor: [
                                 'rgb(100, 143, 255)',
@@ -59,8 +59,8 @@
                         labels: ['WNI', 'WNA'],
                         datasets: [{
                             label: 'Jumlah',
-                            data: [{{ json_encode($populations['wni']) }},
-                                {{ json_encode($populations['wna']) }}
+                            data: [{{ $populations->wni }},
+                                {{ $populations->wna }}
                             ],
                             backgroundColor: [
                                 'rgb(255, 99, 132)',
@@ -92,12 +92,12 @@
                         datasets: [{
                             label: 'Jumlah',
                             data: [
-                                {{ json_encode($religions['islam']) }},
-                                {{ json_encode($religions['protestan']) }},
-                                {{ json_encode($religions['katolik']) }},
-                                {{ json_encode($religions['hindu']) }},
-                                {{ json_encode($religions['buddha']) }},
-                                {{ json_encode($religions['khonghucu']) }},
+                                {{ $religions->islam }},
+                                {{ $religions->protestan }},
+                                {{ $religions->katolik }},
+                                {{ $religions->hindu }},
+                                {{ $religions->buddha }},
+                                {{ $religions->khonghucu }},
                             ],
                             backgroundColor: [
                                 'rgb(54, 162, 235)',
@@ -129,13 +129,13 @@
                         datasets: [{
                             label: 'Jumlah',
                             data: [
-                                {{ json_encode($jobs['pns']) }},
-                                {{ json_encode($jobs['tni_polri']) }},
-                                {{ json_encode($jobs['wiraswasta']) }},
-                                {{ json_encode($jobs['pedagang']) }},
-                                {{ json_encode($jobs['pegawai_swasta']) }},
-                                {{ json_encode($jobs['medis']) }},
-                                {{ json_encode($jobs['buruh']) }},
+                                {{ $jobs->pns }},
+                                {{ $jobs->tni_polri }},
+                                {{ $jobs->wiraswasta }},
+                                {{ $jobs->pedagang }},
+                                {{ $jobs->pegawai_swasta }},
+                                {{ $jobs->medis }},
+                                {{ $jobs->buruh }},
                             ],
                             backgroundColor: [
                                 'rgb(54, 162, 235)',

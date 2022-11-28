@@ -5,26 +5,22 @@
             @if ($data)
                 @if (Request::is('sarana*'))
                     <div style="height: 35vmax">
-                        <h5>{{ $data->title }} di {{ setting('site.title') }} Tahun
+                        <h5>{{ $data->title }} di {{ setting('site.title') }} Tahun {{ $charts->tahun }}
                         </h5>
-                        <canvas id="dataPenduduk" class="mb-5"></canvas>
+                        <canvas id="data" class="mb-5"></canvas>
                     </div>
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <script>
-                        const dataPenduduk = document.getElementById('dataPenduduk');
-
-                        new Chart(dataPenduduk, {
-                            type: 'pie',
+                        const data = document.getElementById('data');
+                        new Chart(data, {
+                            type: 'bar',
                             data: {
-                                labels: ['Laki-laki', 'Perempuan'],
+                                labels: ['{{ $schema[3] }}'],
                                 datasets: [{
                                     label: 'Jumlah',
-                                    data: [{{ json_encode($populations['laki_laki']) }},
-                                        {{ json_encode($populations['perempuan']) }}
-                                    ],
+                                    data: [{{ $charts->masjid }}],
                                     backgroundColor: [
-                                        'rgb(100, 143, 255)',
-                                        'rgb(255, 99, 132)'
+                                        'rgb(54, 162, 235)',
                                     ],
                                     hoverOffset: 4,
                                 }]
