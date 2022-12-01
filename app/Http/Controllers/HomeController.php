@@ -20,6 +20,7 @@ use TCG\Voyager\Models\Category;
 use TCG\Voyager\Models\MenuItem;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -129,7 +130,10 @@ class HomeController extends Controller
         ]);
     }
 
-    public function chartsPages()
+    public function charts()
     {
+
+        $result = DB::table('worships')->where('tahun', '=', Carbon::now()->year)->get();
+        return response()->json($result);
     }
 }

@@ -38,7 +38,7 @@ Route::get('/dump', function () {
 });
 
 Route::get('/data-penduduk', [HomeController::class, 'datas']);
-Route::get('/sarana*', [HomeController::class, 'chartsPage']);
+Route::get('/charts', [HomeController::class, 'charts']);
 
 Route::get('/infografis', [HomeController::class, 'infografis']);
 Route::get('/infografis/show/{id:id}', [HomeController::class, 'showInfografis']);

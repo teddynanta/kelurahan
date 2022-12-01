@@ -16,14 +16,26 @@
                         $schema = json_encode($schema);
                     @endphp
                     <script>
+                        var url = "{{ url('/charts') }}";
+                        var charts = new Array();
+                        $(document).ready(function() {
+                            $.get(url, function(response) {
+                                response.forEach(function(data) {
+                                    charts.push(data.masjid)
+                                })
+                            })
+                        })
+                        console.log('anjay');
                         const chartData = document.getElementById('chartData');
+                        // var obj = JSON.parse({{ $schema }});
+                        // var schema = Object.values(obj);
                         new Chart(chartData, {
                             type: 'bar',
                             data: {
-                                labels: {{ $schema }},
+                                labels: ['masjid', 'masjid', 'masjid', 'masjid', 'masjid'],
                                 datasets: [{
                                     label: 'Jumlah',
-                                    data: {{ $charts }},
+                                    data: charts,
                                     backgroundColor: [
                                         'rgb(54, 162, 235)',
                                     ],
