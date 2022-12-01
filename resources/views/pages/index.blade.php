@@ -8,21 +8,22 @@
                         <h5>{{ $data->title }} di {{ setting('site.title') }} Tahun {{ $charts->tahun }}
                         </h5>
                         <p></p>
-                        <canvas id="data" class="mb-5"></canvas>
+                        <canvas id="chartData" class="mb-5"></canvas>
                     </div>
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    @php
+                        $charts = json_encode($charts);
+                        $schema = json_encode($schema);
+                    @endphp
                     <script>
-                        const data = document.getElementById('data');
-                        var charts = {{ json_encode($charts) }};
-                        var array1 = ['masjid', 'gereja']
-                        console.log(array1);
-                        new Chart(data, {
+                        const chartData = document.getElementById('chartData');
+                        new Chart(chartData, {
                             type: 'bar',
                             data: {
-                                labels: array1,
+                                labels: {{ $schema }},
                                 datasets: [{
                                     label: 'Jumlah',
-                                    data: [{{ $charts->masjid }}],
+                                    data: {{ $charts }},
                                     backgroundColor: [
                                         'rgb(54, 162, 235)',
                                     ],

@@ -24,7 +24,7 @@ use TCG\Voyager\Models\Post;
 // $uris = Page::select('slug')->get();
 $uris = MenuItem::select('url')->where('menu_id', 2)->where('url', '!=', '/')->where('url', '!=', '')->where('url', '!=', '/posts')->where('url', '!=', '/infografis')->where('url', '!=', '/data-penduduk')->get();
 
-
+// ->where('url', '!=', '/sarana-keagamaan')->where('url', '!=', '/sarana-pendidikan')->where('url', '!=', '/sarana kesehatan')
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -38,6 +38,7 @@ Route::get('/dump', function () {
 });
 
 Route::get('/data-penduduk', [HomeController::class, 'datas']);
+Route::get('/sarana*', [HomeController::class, 'chartsPage']);
 
 Route::get('/infografis', [HomeController::class, 'infografis']);
 Route::get('/infografis/show/{id:id}', [HomeController::class, 'showInfografis']);

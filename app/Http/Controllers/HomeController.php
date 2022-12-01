@@ -73,6 +73,7 @@ class HomeController extends Controller
 
     public function profile(Request $request)
     {
+        // dd($request->getRequestUri());
         $id = MenuItem::select('parent_id')->where('url', $request->getRequestUri())->first();
         if ($id->parent_id === null) {
             $active = MenuItem::select('title')->where('url', $request->getRequestUri())->first();
@@ -126,5 +127,9 @@ class HomeController extends Controller
             'post' => $id,
             'categories' => Category::all(),
         ]);
+    }
+
+    public function chartsPages()
+    {
     }
 }
