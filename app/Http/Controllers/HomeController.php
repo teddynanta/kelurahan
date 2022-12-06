@@ -81,26 +81,19 @@ class HomeController extends Controller
         } else {
             $active = MenuItem::select('title')->where('id', $id->parent_id)->first();
         }
-        if ($request->getRequestUri() == '/sarana-keagamaan') {
-            $charts = Worship::where('tahun', Carbon::now()->year)->first();
-        } elseif ($request->getRequestUri() == '/sarana-pendidikan') {
-            $charts = School::where('tahun', Carbon::now()->year)->first();
-        } else {
-            $charts = Healthcare::where('tahun', Carbon::now()->year)->first();
-        }
-        $schema = collect(Schema::getColumnListing($charts->getTable()));
+        // if ($request->getRequestUri() == '/sarana-keagamaan') {
+        //     $charts = Worship::where('tahun', Carbon::now()->year)->first();
+        // } elseif ($request->getRequestUri() == '/sarana-pendidikan') {
+        //     $charts = School::where('tahun', Carbon::now()->year)->first();
+        // } else {
+        //     $charts = Healthcare::where('tahun', Carbon::now()->year)->first();
+        // }
+        // $schema = collect(Schema::getColumnListing($charts->getTable()));
         return view('pages.index', [
             'data' => Page::where('slug', ltrim($request->getRequestUri(), '/'))->first(),
             'menu' => menu('menu', '_json'),
             'active' => $active,
             'categories' => Category::all(),
-            'charts' => $charts,
-            'schema' => $schema->flip()->except([
-                'id',
-                'tahun',
-                'created_at',
-                'updated_at'
-            ])->flip(),
         ]);
     }
 
@@ -130,10 +123,54 @@ class HomeController extends Controller
         ]);
     }
 
-    public function charts()
+    public function worships(Request $request)
     {
+        $id = MenuItem::select('parent_id')->where('url', $request->getRequestUri())->first();
+        if ($id->parent_id === null) {
+            $active = MenuItem::select('title')->where('url', $request->getRequestUri())->first();
+        } else {
+            $active = MenuItem::select('title')->where('id', $id->parent_id)->first();
+        }
+        return view('charts.worships', [
+            'data' => Page::where('slug', ltrim($request->getRequestUri(), '/'))->first(),
+            'menu' => menu('menu', '_json'),
+            'active' => $active,
+            'charts' => Worship::where('tahun', Carbon::now()->year)->first(),
+            'categories' => Category::all(),
+        ]);
+    }
 
-        $result = DB::table('worships')->where('tahun', '=', Carbon::now()->year)->get();
-        return response()->json($result);
+    public function schools(Request $request)
+    {
+        $id = MenuItem::select('parent_id')->where('url', $request->getRequestUri())->first();
+        if ($id->parent_id === null) {
+            $active = MenuItem::select('title')->where('url', $request->getRequestUri())->first();
+        } else {
+            $active = MenuItem::select('title')->where('id', $id->parent_id)->first();
+        }
+        return view('charts.schools', [
+            'data' => Page::where('slug', ltrim($request->getRequestUri(), '/'))->first(),
+            'menu' => menu('menu', '_json'),
+            'active' => $active,
+            'charts' => School::where('tahun', Carbon::now()->year)->first(),
+            'categories' => Category::all(),
+        ]);
+    }
+
+    public function healthcares(Request $request)
+    {
+        $id = MenuItem::select('parent_id')->where('url', $request->getRequestUri())->first();
+        if ($id->parent_id === null) {
+            $active = MenuItem::select('title')->where('url', $request->getRequestUri())->first();
+        } else {
+            $active = MenuItem::select('title')->where('id', $id->parent_id)->first();
+        }
+        return view('charts.healthcares', [
+            'data' => Page::where('slug', ltrim($request->getRequestUri(), '/'))->first(),
+            'menu' => menu('menu', '_json'),
+            'active' => $active,
+            'charts' => Healthcare::where('tahun', Carbon::now()->year)->first(),
+            'categories' => Category::all(),
+        ]);
     }
 }
